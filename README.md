@@ -1,5 +1,4 @@
-# ♟ ChessCard
-
+# chess-stat-cards
 Turn your Chess.com games into a stat card.
 
 ## How to run
