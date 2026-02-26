@@ -1,0 +1,306 @@
+:root {
+  --bg:     #0a0a0f;
+  --surface:#111118;
+  --border: rgba(255,255,255,0.07);
+  --accent: #e8ff47;
+  --text:   #f0f0f0;
+  --muted:  rgba(255,255,255,0.35);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 80px;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(232,255,71,0.05), transparent 60%);
+}
+
+/* ── Header ── */
+.header { text-align: center; margin-bottom: 40px; }
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 10vw, 96px);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+}
+h1 span { color: var(--accent); }
+
+.subtitle {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+/* ── Search ── */
+.search-wrap {
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+
+.search-row {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.search-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  padding: 14px 16px;
+  letter-spacing: 0.05em;
+}
+.search-row input::placeholder { color: var(--muted); }
+.search-row input:focus { outline: none; }
+
+.search-row button {
+  background: var(--accent);
+  border: none;
+  color: #000;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.search-row button:hover    { opacity: 0.8; }
+.search-row button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.error-msg {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #f87171;
+  letter-spacing: 0.05em;
+  min-height: 16px;
+}
+
+/* ── Spinner ── */
+.spinner {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(232,255,71,0.15);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 24px auto;
+}
+.spinner.visible { display: block; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Card wrap ── */
+.card-wrap {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: fadeUp 0.5s ease forwards;
+}
+.card-wrap.visible { display: flex; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Theme buttons ── */
+.themes { display: flex; gap: 10px; }
+
+.theme-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.theme-btn.active {
+  border-color: white;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* ── Card ── */
+.card {
+  width: 300px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  transition: transform 0.2s;
+}
+.card:hover { transform: scale(1.015); }
+
+.card-topbar {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* ── Card header ── */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(232,255,71,0.3);
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-info { flex: 1; min-width: 0; }
+
+.card-username {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-meta {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-top: 3px;
+}
+
+.ovr-block { text-align: right; }
+
+.ovr-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 50px;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.ovr-label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+}
+
+/* ── Stats grid ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.stat-cell {
+  padding: 14px 20px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stat-cell:nth-child(even)      { border-right: none; }
+.stat-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+.stat-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.stat-bar-wrap {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.stat-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Record bar ── */
+.record-bar {
+  display: flex;
+  border-top: 1px solid var(--border);
+}
+
+.rec-cell {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.rec-cell:last-child { border-right: none; }
+
+.rec-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+}
+.rec-num.win  { color: #4ade80; }
+.rec-num.draw { color: var(--muted); }
+.rec-num.loss { color: #f87171; }
+.rec-num.elo  { color: var(--accent); }
+
+.rec-label {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+/* ── Card footer ── */
+.card-footer {
+  padding: 8px;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.12);
+  border-top: 1px solid var(--border);
+}

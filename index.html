@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChessCard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="header">
+    <p class="eyebrow">♟ CHESS.COM STATS</p>
+    <h1>CHESS<span>CARD</span></h1>
+    <p class="subtitle">ENTER YOUR USERNAME · GET YOUR CARD</p>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-row">
+      <input type="text" id="usernameInput" placeholder="chess.com username" autocomplete="off"/>
+      <button id="generateBtn" onclick="generateCard()">GENERATE</button>
+    </div>
+    <p class="error-msg" id="errorMsg"></p>
+  </div>
+
+  <div class="spinner" id="spinner"></div>
+
+  <div class="card-wrap" id="cardWrap">
+
+    <div class="themes">
+      <button class="theme-btn active" style="background:#e8ff47" data-accent="#e8ff47" onclick="setTheme(this)"></button>
+      <button class="theme-btn"        style="background:#38bdf8" data-accent="#38bdf8" onclick="setTheme(this)"></button>
+      <button class="theme-btn"        style="background:#f472b6" data-accent="#f472b6" onclick="setTheme(this)"></button>
+      <button class="theme-btn"        style="background:#fb923c" data-accent="#fb923c" onclick="setTheme(this)"></button>
+    </div>
+
+    <div class="card" id="theCard">
+      <div class="card-topbar"></div>
+
+      <div class="card-header">
+        <div class="avatar" id="avatarEl">♟</div>
+        <div class="card-info">
+          <div class="card-username" id="cardUsername">—</div>
+          <div class="card-meta"     id="cardMeta">—</div>
+        </div>
+        <div class="ovr-block">
+          <div class="ovr-num" id="cardOvr">—</div>
+          <div class="ovr-label">OVR</div>
+        </div>
+      </div>
+
+      <div class="stats-grid" id="statsGrid">
+        <!-- filled by script.js -->
+      </div>
+
+      <div class="record-bar">
+        <div class="rec-cell"><div class="rec-num win"  id="recW">—</div><div class="rec-label">WIN</div></div>
+        <div class="rec-cell"><div class="rec-num draw" id="recD">—</div><div class="rec-label">DRAW</div></div>
+        <div class="rec-cell"><div class="rec-num loss" id="recL">—</div><div class="rec-label">LOSS</div></div>
+        <div class="rec-cell"><div class="rec-num elo"  id="recElo">—</div><div class="rec-label">ELO</div></div>
+      </div>
+
+      <div class="card-footer" id="cardFooter">CHESSCARD · chess.com</div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
